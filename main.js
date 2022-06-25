@@ -1,79 +1,100 @@
-//const input = document.getElementById("input")
+const contactoForm = document.getElementById('contacto-form');
+const inputNombre = document.getElementById('inputNombre');
+const inputApellido = document.getElementById('inputApellido');
+const inputTelefono = document.getElementById('inputTelefono');
+const bodyTabla = document.getElementById('body-tabla');
+let contactos = [];
 
-// function imprimirValorInput() {
-// console.log(input.value);
-// }
+function agregarContacto(nombre, apellido, telefono) {
+    contactos.push({
+        nombre,
+        apellido: apellido,
+        telefono: telefono,
+    })
+}
 
-// const boton = document.getElementsByClassName("boton");
+function eliminarContacto(indice) {
+    contactos.splice(indice, 1);
+    mostrarContactos();
+}
 
-// const lable = document.querySelector("label");
+function mostrarContactos() {
+    bodyTabla.innerHTML = '';
+    contactos.forEach(function(contacto, indice) {
+        bodyTabla.innerHTML += `<tr>
+        <th scope="row" class="text-center">${indice + 1}</th>
+        <td class="text-center">${contacto.nombre}</td>
+        <td class="text-center">${contacto.apellido}</td>
+        <td class="text-center">${contacto.telefono}</td>
+        <td class="text-center">
+        <button class="btn btn-warning m-1 bg-gradient fw-bold" onclick="editarContacto(${indice})">Editar</button>
+        <button class="btn btn-danger m-1 bg-gradient fw-bold" onclick="eliminarContacto(${indice})">Eliminar</button>        
+        </td>
+        </tr>`
+    })
+    guardarContactosStorage();
+}
 
-// Crear un elemento (metodo1)
+function editarContacto(indice) {
+    contactos[indice].nombre = prompt('Ingresa un nuevo nombre.', 'Nuevo nombre');
+    contactos[indice].apellido = prompt('Ingresa un nuevo apellido.', 'Nuevo apellido');
+    contactos[indice].telefono = prompt('Ingresa un nuevo teléfono.', 'Nuevo teléfono');
 
+    mostrarContactos();
+}
 
+function editarContactoPrompt(indice, nombre, apellido, telefono) {
+    contactos[indice].nombre = nombre;
+    contactos[indice].apellido = apellido;
+    contactos[indice].telefono = telefono;
 
-// var Imagen = document.createElement("img");
+    mostrarContactos();
+}
 
-// let perro = document.querySelector("body");
-// perro.appendChild(Imagen);
+contactoForm.addEventListener('submit', function(event) {
+    event.preventDefault();
 
+    if (inputNombre.value.trim() !== '' && inputApellido.value.trim() !== '' && inputTelefono.value.trim() !== '') {
 
+        bodyTabla.innerHTML = '';
 
-// Imagen.src = "https://tse3.mm.bing.net/th?id=OIP.6VxupNs7ee2hyKlMiGyAcQHaGL&pid=Api&P=0&w=199&h=166"
+        agregarContacto(inputNombre.value, inputApellido.value, inputTelefono.value);
 
+        mostrarContactos();
 
-// var Imagen2 = document.createElement("img");
-
-
-// let perro2 = document.querySelector("header");
-// perro.appendChild(Imagen2);
-
-
-
-// Imagen2.src = "https://tse3.mm.bing.net/th?id=OIP.6VxupNs7ee2hyKlMiGyAcQHaGL&pid=Api&P=0&w=199&h=166"
-
-// var imgperro = "https://tse3.mm.bing.net/th?id=OIP.6VxupNs7ee2hyKlMiGyAcQHaGL&pid=Api&P=0&w=199&h=166"
-
-
-
-// let miboton = document.getElementById("boton1");
-
-// function miFuncion(evento) {
-// console.log("hiciste click!")
-// perro2.innerHTML += "ya casi"
-
-
-// }
-
-// miboton.addEventListener("click", miFuncion)
-
-
-const formulario = document.getElementById("form")
-const names = document.getElementById("inputN")
-const lastname = document.getElementById("inputLN")
-const email = document.getElementById("inputE")
-const phone = document.getElementById("inputP")
-const tabla = document.getElementById("bodytabla")
-
-
-//3:02
-
-
-
-
-
-
-formulario.addEventListener("submit", function(evento) {
-    evento.preventDefault();
-    if (names.value !== '' || lastname.value !== '' || email.value !== '' || phone.value !== '') {
-        tabla.innerHTML += `<tr>   
-    <th scope = "row" > 1 </th>     
-    <td> ${names.value} </td>    
-    <td> ${ lastname.value.trim() } </td>  
-    <td> ${ email.value.trim() } </td>    
-    <td> ${ phone.value.trim() } </td>
-    </tr>`
-
-        evento.target.reset();
-    } else { alert("los tres campos son obligatorios") }
+        event.target.reset();
+    } else {
+        alert('Introdusca infromación valida en los 3 campos');
+    }
 });
+
+function SoloNumeros(event) {
+    if (window.event) {
+        keynum = event.keyCode;
+    } else {
+        keynum = event.which;
+    }
+    if ((keynum > 47 && keynum < 58) || keynum == 8 || keynum == 13) {
+        return true;
+    } else {
+        alert("Ingrese solo numeros en la casilla de Teléfono")
+        return false;
+    }
+}
+
+function guardarContactosStorage() {
+    const contactosGuardar = JSON.stringify(contactos);
+    localStorage.setItem('contactos', contactosGuardar);
+}
+
+function obtenerContactosStorage() {
+    const contactosStorage = localStorage.getItem('contactos');
+    if (contactosStorage == null) {
+        contactos = [];
+    } else {
+        contactos = JSON.parse(contactosStorage);
+    }
+}
+
+obtenerContactosStorage()
+mostrarContactos();
