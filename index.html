@@ -65,28 +65,34 @@
     <br><br>
 
     <!--Formulario-->
-
-    <div class="Formulario">
-        <label for="Name" class="form-label">NAME</label>
-        <input class="form-control" list="datalistOptions" id="exampleDataList" placeholder="Type the name...">
-    </div>
-
-
-    <div class="Formulario">
-        <label for="Name" class="form-label">LAST NAME</label>
-        <input class="form-control" list="datalistOptions" id="exampleDataList" placeholder="Type the last name...">
-    </div>
-
-    <div class="Formulario">
-        <label for="Name" class="form-label">EMAIL</label>
-        <input class="form-control" list="datalistOptions" id="exampleDataList" placeholder="Type the email...">
-    </div>
+    <form id="form">
+        <div class="Formulario">
+            <label for="Name" class="form-label">NAME</label>
+            <input class="form-control" list="datalistOptions" id="inputN" placeholder="Type the name...">
+        </div>
 
 
-    <div class="Formulario">
-        <label for="Name" class="form-label">PHONE</label>
-        <input class="form-control" list="datalistOptions" id="exampleDataList" placeholder="Type the phone...">
-    </div>
+        <div class="Formulario">
+            <label for="Name" class="form-label">LAST NAME</label>
+            <input class="form-control" list="datalistOptions" id="inputLN" placeholder="Type the last name...">
+        </div>
+
+        <div class="Formulario">
+            <label for="Name" class="form-label">EMAIL</label>
+            <input class="form-control" list="datalistOptions" id="inputE" placeholder="Type the email...">
+        </div>
+
+
+        <div class="Formulario">
+            <label for="Name" class="form-label">PHONE</label>
+            <input class="form-control" list="datalistOptions" id="inputP" placeholder="Type the phone...">
+        </div>
+
+        <button type="submit" class="btn btn-primary" id="save">SAVE</button>
+
+    </form>
+
+
 
     <br><br>
 
@@ -123,20 +129,28 @@
                 <th scope="col">LAST NAME</th>
                 <th scope="col">EMAIL</th>
                 <th scope="col">PHONE</th>
+                <th scope="col">OPTIONS</th>
             </tr>
         </thead>
-        <tbody>
-            <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-                <td>@mdo</td>
-            </tr>
+        <tbody id="bodytabla">
 
         </tbody>
     </table>
     <br><br> <br><br>
+    <!--Ribbon1-->
+
+    <div id="ribbon" class="container-fluid">
+        <div id="Logo" class="container w-50 pl-5">
+
+            <div class="row align-items-center">
+
+                <div class="col-sm p-3">
+
+                </div>
+            </div>
+        </div>
+    </div>
+
     <Footer>
 
         <footer class="bd-footer py-3 py-md-1 mt-4 bg-light">
@@ -146,14 +160,13 @@
                 </div>
 
                 <div>
-                    <br><br>
-                    <div style="text-align: center; font-size: x-small;">Nota:Esta pagina fue realizada con propositos estudiantiles. El contenido es unica y esclusivamente para la presentacion de un proyecto Bootcamps.
-                    </div>
-                    <div style="text-align: center; font-size: x-small;">Venustiano Carranza #208,0 Temoaya, Temoaya, Edo de México 50850 Temoaya, Estado de México, México.
-                    </div>
-
-                    <div style="text-align: center ; font-size: x-small">E-mail: roberto.garcia.olmos@gmail.com Tel: 722 501 6915 </div>
+                    < <div style="text-align: center; font-size: x-small;">Nota:Esta pagina fue realizada con propositos estudiantiles. El contenido es unica y esclusivamente para la presentacion de un proyecto Bootcamps.
                 </div>
+                <div style="text-align: center; font-size: x-small;">Venustiano Carranza #208,0 Temoaya, Temoaya, Edo de México 50850 Temoaya, Estado de México, México.
+                </div>
+
+                <div style="text-align: center ; font-size: x-small">E-mail: roberto.garcia.olmos@gmail.com Tel: 722 *** **** </div>
+            </div>
 
 
 

@@ -46,3 +46,34 @@
 // }
 
 // miboton.addEventListener("click", miFuncion)
+
+
+const formulario = document.getElementById("form")
+const names = document.getElementById("inputN")
+const lastname = document.getElementById("inputLN")
+const email = document.getElementById("inputE")
+const phone = document.getElementById("inputP")
+const tabla = document.getElementById("bodytabla")
+
+
+//3:02
+
+
+
+
+
+
+formulario.addEventListener("submit", function(evento) {
+    evento.preventDefault();
+    if (names.value !== '' || lastname.value !== '' || email.value !== '' || phone.value !== '') {
+        tabla.innerHTML += `<tr>   
+    <th scope = "row" > 1 </th>     
+    <td> ${names.value} </td>    
+    <td> ${ lastname.value.trim() } </td>  
+    <td> ${ email.value.trim() } </td>    
+    <td> ${ phone.value.trim() } </td>
+    </tr>`
+
+        evento.target.reset();
+    } else { alert("los tres campos son obligatorios") }
+});
